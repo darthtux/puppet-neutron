@@ -53,13 +53,13 @@ class neutron::db (
 
   # NOTE(spredzy): In order to keep backward compatibility we rely on the pick function
   # to use neutron::<myparam> if neutron::db::<myparam> isn't specified.
-  $database_connection_real = pick($::neutron::server::database_connection, $database_connection)
-  $database_idle_timeout_real = pick($::neutron::server::database_idle_timeout, $database_idle_timeout)
-  $database_min_pool_size_real = pick($::neutron::server::database_min_pool_size, $database_min_pool_size)
-  $database_max_pool_size_real = pick($::neutron::server::database_max_pool_size, $database_max_pool_size)
-  $database_max_retries_real = pick($::neutron::server::database_max_retries, $database_max_retries)
-  $database_retry_interval_real = pick($::neutron::server::database_retry_interval, $database_retry_interval)
-  $database_max_overflow_real = pick($::neutron::server::database_max_overflow, $database_max_overflow)
+  $database_connection_real = pick(getvar('::neutron::server::database_connection'), getvar('database_connection'))
+  $database_idle_timeout_real = pick(getvar('::neutron::server::database_idle_timeout'), getvar('database_idle_timeout'))
+  $database_min_pool_size_real = pick(getvar('::neutron::server::database_min_pool_size'), getvar('database_min_pool_size'))
+  $database_max_pool_size_real = pick(getvar('::neutron::server::database_max_pool_size'), getvar('database_max_pool_size'))
+  $database_max_retries_real = pick(getvar('::neutron::server::database_max_retries'), getvar('database_max_retries'))
+  $database_retry_interval_real = pick(getvar('::neutron::server::database_retry_interval'), getvar('database_retry_interval'))
+  $database_max_overflow_real = pick(getvar('::neutron::server::database_max_overflow'), getvar('database_max_overflow'))
 
   validate_re($database_connection_real,
     '^(sqlite|mysql(\+pymysql)?|postgresql):\/\/(\S+:\S+@\S+\/\S+)?')

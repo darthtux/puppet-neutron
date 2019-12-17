@@ -121,11 +121,11 @@ class neutron::logging (
 
   include ::neutron::deps
 
-  $debug_real = pick($::neutron::debug,$debug)
-  $use_syslog_real = pick($::neutron::use_syslog,$use_syslog)
-  $use_stderr_real = pick($::neutron::use_stderr,$use_stderr)
-  $log_file_real = pick($::neutron::log_file,$log_file)
-  $log_dir_real = pick($::neutron::log_dir,$log_dir)
+  $debug_real = pick(getvar('::neutron::debug'),getvar('debug'))
+  $use_syslog_real = pick(getvar('::neutron::use_syslog'),getvar('use_syslog'))
+  $use_stderr_real = pick(getvar('::neutron::use_stderr'),getvar('use_stderr'))
+  $log_file_real = pick(getvar('::neutron::log_file'),getvar('log_file'))
+  $log_dir_real = pick(getvar('::neutron::log_dir'),getvar('log_dir'))
 
   oslo::log { 'neutron_config':
     debug                         => $debug_real,
