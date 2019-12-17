@@ -119,7 +119,7 @@ class neutron::agents::metadata (
     }
   }
 
-  if $::neutron::params::metadata_agent_package {
+  if getvar'(::neutron::params::metadata_agent_package') {
     package { 'neutron-metadata':
       ensure => $package_ensure,
       name   => $::neutron::params::metadata_agent_package,
